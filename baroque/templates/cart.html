@@ -1,0 +1,153 @@
+{% extends 'base.html' %}
+{% block title %}BAROQUE{% endblock title %}
+{% load static %}
+{% load cart %}
+{% block customcss %}
+
+  {% comment %} <link rel="stylesheet" href=" {% static 'css/cart.css' %} "> {% endcomment %}
+  {% endblock customcss %}
+{% block content %}
+<section class="my-4">
+  <div class="container d-md-flex ">
+    <!-- for loop row -->
+    <div class="row col-md-8">
+
+
+      <div class="col-12">
+
+        <table class="table text-center">
+          <thead>
+            <tr>
+
+              <th></th>
+              <th></th>
+              <th>Product Name</th>
+              <th>Size</th>
+              <th>Unit Price</th>
+              <th>Qty</th>
+              <th>Total Price</th>
+            </tr>
+          </thead>
+          <tbody class="my-4 img-thumbnail">
+            {% if products %}
+            {% for product in products %}
+            <tr class="text-center pt-4 my-4">
+              <td scope="row" class="tdr">
+                {% comment %} <form action="{% url 'cart' %}" method="post">
+                  {% csrf_token %}
+                  <input type="text"  name="delete" id="" value="{{product.id}}">
+                  <input type="submit" value="X"> {% endcomment %}
+                <a href="" class=""><i class="fa fa-times" aria-hidden="true" type="submit"></i></a>
+              {% comment %} </form>  {% endcomment %}
+              </td>
+              <td class=" "><img
+                  src="{{ product.product_img.url }}"
+                  alt="" class="var-img1 img-thumbnail" width="60px" height="80px" /></td>
+              <td class=" align-content-center text-capitalize"> {{product.product_name}} </td>
+              <td> {{product.product_size}} </td>
+              <td class='align-self-center'>{{ product.product_price |currency}}</td>
+              <td class="d-flex offset-2 text-center">
+                <form action="{% url 'cart' %}" class=" " method="post">
+                  {% csrf_token %}
+                  <input type="text" hidden   name="product" value="{{ product.pk }}" />
+                  <input type="text" hidden   name="remove" value=True />
+                  <input type="submit" value="-" class=" border border-none">
+                </form>
+                <input type='text' value=" {{product | cart_quantity:request.session.cart }} " class="outline-none border border-none text-center" style="width:30px" />
+                <form action="{% url 'cart' %}" class="" method="post">
+                {% csrf_token %}
+                  <input type="text" hidden   name="product" value="{{ product.pk }}" />
+                  <input type="submit" value="+" class="border border-none">
+              </form>
+              </td>
+              <td>
+                {{ product|price_total:request.session.cart|currency}}
+              </td>
+
+            </tr>
+            {% endfor %}
+            {% else %}
+            <tr>
+            <h3 class="text-center text-danger text-capitalize"> your cart is empty </h3>
+            </tr>
+            {% endif %}
+          </tbody>
+        </table>
+        <a href="{% url 'home' %}" type="button" name="" id="" class="btn btn-primary text-capitalize" btn-lg btn-block">continue to shopping</button></a>
+      </div>
+    </div>
+
+    <!-- bill row -->
+    <div class="col-md-4 mt-4 mx-auto">
+      <div class="card my-4 col-12">
+        <div class="card-body text-center">
+          <span class=" text-center display-6 text-capitalize">cart total</span>
+          <br>
+          <div class="d-flex justify-content-between pt-4">
+          <span class="text-capitalize font-weight-bolder"> Subtotal : </span>
+          <span class=" font-weight-bolder">{{products|total_cart_price:request.session.cart|currency }}</span>
+        </div>
+          <hr>
+          <div class="d-block">
+            <div>
+          <select class="custom-select form-control">
+            <option>Canada</option>
+            <option value="" selected>Pakistan</option>
+            <option value="">England</option>
+            <option value="">UAE</option>
+          </select>
+          </div>
+          <div>
+          <select class="custom-select form-control">
+            <option>+96</option>
+            <option value="+92" selected>+92</option>
+            <option value="+98">+98</option>
+            <option value="+121">+121</option>
+          </select>
+          </div>
+          <button type="button" name="" id="" class="btn btn-dark form-control btn-block">Get a
+            Quote</button>
+          </div>
+          <hr>
+          <div class="d-flex justify-content-between">
+          <span class="text-capitalize text-left">Grand total</span><br>
+          <span class="text-right">{{products|total_cart_price:request.session.cart|currency }} </span>
+            </div>
+          <hr>
+          <!-- Button trigger modal -->
+          <button type="button" class="btn btn-dark form-control" data-toggle="modal" data-target="#exampleModalCentered">
+            Proceed to Checkout
+          </button>
+          
+          <!-- Modal -->
+          <div class="modal" id="exampleModalCentered" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenteredLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title text-uppercase" id="exampleModalCenteredLabel">Baroque</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                <span class="text-capitalize display-4">Thanks for Shopping </span>
+                </div>
+                <div class="modal-footer">
+                  <button type="button"  class="btn btn-secondary" ><a class="btn btn-secondary" href="{% url 'home' %}">Continue Shopping</a></button>
+                  <button type="button" class="btn btn-primary"><a class="btn btn-primary" href="{% url 'order' %}">Proceed to Order</a></button>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- container-fluid end -->
+  </div>
+
+
+</section>
+
+{% endblock content %}

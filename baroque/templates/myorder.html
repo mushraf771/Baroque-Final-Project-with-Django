@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% block title %}BAROQUE{% endblock title %}
+{% load static %}
+{% load cart %}
+{% block customcss %}
+
+  {% comment %} <link rel="stylesheet" href=" {% static 'css/cart.css' %} "> {% endcomment %}
+  {% endblock customcss %}
+{% block content %}
+<section class="my-4">
+  <div class="container">
+    <!-- for loop row -->
+    {% if orders %}
+    <div class="row col-12">
+        <table class="table table-responsive table-hover text-center">
+          <thead class="thead-light img-thumbnail">
+            <tr>
+              <th>#</th>
+              <th>First Name</th>
+              <th>Last Name</th>
+              <th>Email</th>
+              <th>Phone</th>
+              <th>Product</th>
+              <th>Qty</th>
+              <th>Address</th>
+              <th>Country</th>
+              <th>City</th>
+              <th>Price</th>
+              <th>Order Date/Time</th>
+            </tr>
+        </thead>
+          <tbody class="my-4 p-2 ">
+            
+            {% for order in orders %}
+            <tr class="text-center pt-4 my-4 img-thumbnail p-2">
+              
+                  <td class=" align-content-center"> {{forloop.counter}} </td>
+                  <td class=" align-content-center"> {{order.fname}} </td>
+              <td class=" align-content-center"> {{order.lname}} </td>
+              <td class=" align-content-center"> {{order.email}} </td>
+              <td class=" align-content-center"> {{order.phone}} </td>
+              <td class=" "> {{order.product}} </td>
+                <td class=" align-content-center"> {{order.quantity}}</td>
+                <td class=" align-content-center"> {{order.address}}</td>
+                <td class=" align-content-center"> {{order.region}} </td>
+                <td class=" align-content-center"> {{order.city}} </td>
+                <td class='align-self-center'>{{ order.product_price |currency}}</td>
+                <td class=" align-content-center"> {{order.date}} </td>
+              
+            </tr>
+            {% endfor %}
+            {% else %}
+            <tr>
+            <h3 class="text-center text-danger text-capitalize">You Have No Orders Please Order first</h3>
+            </tr>
+            {% endif %}
+          </tbody>
+        </table>
+        <a href="{% url 'home' %}" type="button" name="" id="" class=" col-6 col-md-4 btn btn-primary btn btn-block text-capitalize">continue to shopping</a>
+      </div>
+    </div>
+</div>
+</section>
+
+{% endblock content %}

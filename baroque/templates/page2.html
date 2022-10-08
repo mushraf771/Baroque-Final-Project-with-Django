@@ -1,0 +1,135 @@
+{% extends 'base.html' %}
+{% block title %}BAROQUE{% endblock title %}
+{% load static %}
+{% block customcss %}
+
+<link rel="stylesheet" href="{% static 'css/barque2.css' %}">
+{% endblock customcss %}
+{% block content %}
+<hr>
+<section class="container mx-auto">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+            <li class="breadcrumb-item text-primary active"><a href="">{{cat}}</a></li>
+            
+        </ol>
+    </nav>
+
+</section>
+<section class="container ">
+    <div class="row">
+        <div class="col-12 col-md-3  mx-auto  pt-4">
+            <div class="my-4 desc">
+                <div id="accordion" role="tablist">
+                    <div class="card ">
+
+                        <div class="card-header " role="tab" id="headingOne">
+                            <h6 class="mb-0 ">
+                                <a data-toggle="collapse" href="#collapseOne" aria-expanded="false"
+                                    aria-controls="collapseOne" class="collapsed d-flex justify-content-between">
+                                    <span class="a text-body"> <i class="fa fa-angle-down"
+                                            aria-hidden="true"></i></span>
+                                    <span class="text-body">Size</span>
+                                </a>
+                            </h6>
+                        </div>
+                        <div id="collapseOne" class="collapse" role="tabpanel" aria-labelledby="headingOne">
+                            <div class="card-body">
+                                {{ prod.product_description }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+
+                <div id="accordion" role="tablist">
+                    <div class="card">
+                        <div class="card-header" role="tab" id="headingTow">
+                            <h6 class="mb-0">
+                                <a data-toggle="collapse" href="#collapseTow" aria-expanded="false"
+                                    aria-controls="collapseTow" class="collapsed d-flex justify-content-between">
+                                    <span class="a text-body"><i class="fa fa-angle-down" aria-hidden="true"></i>
+                                    </span>
+                                    <span class="text-body">Pieces</span>
+                                </a>
+                            </h6>
+                        </div>
+                        <div id="collapseTow" class="collapse" role="tabpanel" aria-labelledby="headingTow">
+                            <div class="card-body">
+                                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry
+                                richardson ad squid.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+
+                <div id="accordion" role="tablist">
+                    <div class="card">
+                        <div class="card-header" role="tab" id="headingThree">
+                            <h6 class="mb-0">
+                                <a data-toggle="collapse" href="#collapseThree" aria-expanded="false"
+                                    aria-controls="collapseThree" class="collapsed d-flex justify-content-between">
+                                    <span class="a text-body"> <i class="fa fa-angle-down"
+                                            aria-hidden="true"></i></span>
+                                    <span class="text-body"> Fabric Type</span>
+                                </a>
+                            </h6>
+                        </div>
+                        <div id="collapseThree" class="collapse" role="tabpanel" aria-labelledby="headingThree">
+                            <div class="card-body">
+                                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry
+                                richardson ad squid.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+
+                <div id="accordion" role="tablist">
+                    <div class="card">
+                        <div class="card-header" role="tab" id="headingFour">
+                            <h6 class="mb-0">
+                                <a data-toggle="collapse" href="#collapseFour" aria-expanded="false"
+                                    aria-controls="collapseFour" class="collapsed d-flex justify-content-between">
+                                    <span class="a text-body"><i class="fa fa-angle-down" aria-hidden="true"></i></span>
+                                    <span class="text-body"> Price</span>
+                                </a>
+                            </h6>
+                        </div>
+                        <div id="collapseFour" class="collapse" role="tabpanel" aria-labelledby="headingFour">
+                            <div class="card-body">
+                                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus
+                                terry
+                                richardson ad squid.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 col-sm-9 row mx-auto  ">
+            {% for prod in products %}
+        
+            
+            <div class="col-12 col-md-4 mx-auto">
+            <a href="{% url 'product_details' prod.pk prod.category_id %}" class="text-uppercase text-decoration-none">
+                <img src="{{prod.product_img.url}}" alt="image not found" class="img-fluid  pt-4">
+                <div class="description  pt-2">
+                    <span class=" type text-black text-uppercase">{{prod.product_name}}</span><br>
+                    <span class="type text-black">{{prod.product_price}}</span><br>
+                    <span class="shop-now">Details</span>
+            </a></div>
+        </div>
+            {% endfor %}
+        </div>
+    </div>
+
+</section>
+{% endblock content%}
+
+</body>
+
+</html>

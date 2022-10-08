@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  {% comment %} tittle {% endcomment %}
+  <title>{% block title %}{% endblock title %}</title>
+  <link rel="shortcut icon" href="//cdn.shopify.com/s/files/1/2277/5269/t/68/assets/favicon.png?v=10340059679789340820" type="image/png">
+  {% comment %} load static {% endcomment %}
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'css/broque.css' %}" >
+  {% block customcss %}
+
+  {% endblock customcss %}
+
+  {% comment %} <link rel="stylesheet" href="{% static 'css/broque.css' %}"> {% endcomment %}
+  <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}">
+  <link rel="stylesheet" href="{% static 'css/owl.theme.default.min.css' %}>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+    integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+
+
+</head>
+
+<body>
+  {% block townav  %}
+  
+  {% endblock townav  %}
+
+  <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top mx-auto ">
+    <div class="container mx-auto">
+      <a href="{% url 'home' %}" class="navbar-brand ">
+          <img src="https://cdn.shopify.com/s/files/1/2277/5269/t/60/assets/baroque_logo-01.svg?v=3325848057508312822"
+            alt="not found" class="logo" />
+      </a>
+      <button class="navbar-toggler  " type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon "></span>
+      </button>
+      <div class="collapse navbar-collapse mx-auto" id="navbarText">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0 mx-auto nava">
+          <li class="nav-item active">
+          <a href="{% url 'collection' %}" class="nav-a p-1">Collection</a>
+        </li>
+        <li class="nav-item ">
+          <a href="{% url 'sale' %}" class="nav-a p-1">Sale</a>
+        </li>
+        <li class="nav-item ">
+          <a href="{% url 'rtw' %}" class="nav-a p-1 " >Ready to Wear</a>
+        </li>
+        <li class="nav-item">
+          <a  class="nav-a p-1 " href="{% url 'shawls' %}">shawls</a >
+        </li>
+        <li class="nav-item">
+          <a  class="nav-a p-1" href="{% url 'duppata' %}">duppatads</a >
+        </li>
+        <li class="nav-item">
+          <a  class="nav-a p-1" href="{% url 'bottoms' %}">bottoms</a >
+        </li>
+        </ul>
+        <span class="navbar-text">
+      <ul class="navbar-nav  nava">
+      {% comment %} <li class="nav-item ml-0">
+              <i class=" fal fa-search mt-3 p-1" aria-hidden="true"></i>
+      </li> {% endcomment %}
+      <li class="nav-item dropdown mr-sm-2 form-inline navbar-text">
+          <a  class="nav-a p-1 dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              PKR
+            </a >
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><a  class="dropdown-item" href="#">POND</a ></li>
+              <li><a  class="dropdown-item" href="#">INR</a ></li>
+              <li><hr class="dropdown-divider"/></li>
+              <li><a  class="dropdown-item" href="#">USD</a ></li>
+            </ul>
+      </li>
+      <li class="nav-item ">
+          <a  href="{% url 'cart' %} " class="text-black text-decoration-none ">
+                <i class="fal fa-shopping-bag mt-2 p-1" aria-hidden="false"></i>
+                <span class=" bage">{{ request.session.cart.keys|length }}</span>
+          </a >
+      </li>
+      <li class="nav-item ">
+              <a  href="{% url 'myorder' %}" class="text-black text-decoration-none ">
+              <i class="fal fa-user  bg-light mt-2 p-1" aria-hidden="true"></i>
+              </a >
+      </li>
+      </ul>
+        </span>
+      </div>
+    </div>
+  </nav>
+  {% comment %} {% include 'partials/messages.html' %} {% endcomment %}
+  {% block content %}
+
+
+  {% endblock content %}
+
+
+
+
+
+
+
+  <section class="container mx-auto pt-5">
+
+    <div class="row d-flex co  justify-content-between justify-content-sm-center flex-wrap text-md-left ">
+      <div class="col-12 col-sm-6  col-md-6 col-lg-2 mx-auto">
+        <ul>
+          <li>
+            <a href="{% url 'home' %}"><img src="https://cdn.shopify.com/s/files/1/2277/5269/t/60/assets/baroque_logo-01.svg?v=3325848057508312822" alt="not found"
+                class="footer-logo" />
+            </a>
+          </li>
+          <li><span class="footer-li text-left ">who we are</span></li>
+          <li><span class="footer-li text-left">carrear</span></li>
+          <li><span class="footer-li text-left">lookbook</span></li>
+          <li><span class="footer-li  text-left">our responsibility</span></li>
+        </ul>
+      </div>
+      <div class="col-12 col-sm-6  col-md-6 col-lg-2  pt-4 ">
+        <ul>
+          <li><span class="footer-li">CUSTOMER SERVICE</span></li>
+          <li><span class="footer-li">contact us</span></li>
+          <li><span class="footer-li ">delivery</span></li>
+          <li><span class="footer-li">exchange policy</span></li>
+          <li> <span class="footer-li">tracce your order</span></li>
+        </ul>
+
+
+
+
+      </div>
+      <div class="col-12 col-sm-6  col-md-6 col-lg-2 pt-4">
+
+        <ul>
+          <li><span class="footer-li">INFORMATION</span></li>
+          <li><span class="footer-li">privacy policy</span></li>
+          <li><span class="footer-li ">terms&condition</span></li>
+          <li><span class="footer-li">covid 19 updates</span></li>
+          <li> <span class="footer-li ">faqs</span></li>
+        </ul>
+
+
+
+
+      </div>
+
+      <div class="col-12 col-sm-6  col-md-6 col-lg-2 pt-4  ">
+        <ul class="">
+          <li> <span class="footer-li">we accept</span></li>
+        </ul>
+        <ul class="d-flex justify-content-md-between">
+          <li><span><img class="bank-icon" src="{% static 'image/visa.PNG' %}" /></span></li>
+          <li><span><img class="bank-icon" src="{% static 'image/ssl.PNG' %}" /></span></li>
+          <li> <span><img class="bank-icon" src="{% static 'image/mastercard.PNG' %}" /></span></li>
+        </ul>
+      </div>
+
+      <div class="col-12 col-sm-6  col-md-6 col-lg-2 pt-4 ">
+        <ul>
+          <li><span class="">follow us</span></li>
+        </ul>
+        <ul class="d-flex justify-content-md-between">
+          <li class=""> <span><img class="social-icon" src="{% static 'image/fb.PNG' %}" /></span></li>
+          <li class=""> <span><img class="social-icon" src="{% static 'image/insta.PNG' %}" /></span></li>
+          <li class=""> <span><img class="social-icon" src="{% static 'image/snap.PNG' %}" /></span></li>
+        </ul>
+
+      </div>
+      <div class="col-12 col-sm-6  col-md-6 col-lg-2 pt-4">
+        <div class="d-table">
+          <span class="subscribe text-center ">Subscribe now</span>
+          <span><input class="" type="text" placeholder="Email"></span>
+          <span> <input type="submit" class=" btn-dark text-center" value="Subscribe"></span>
+        </div>
+      </div> 
+    </div>
+  </section>
+  <footer class="container">
+    <div class="text-center bg-light text-muted"><h5>All Copyright Reservered @ChMushrafKhan</h5></div>
+  </footer>
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+
+  {% comment %} <script type="text/javascript" src="/node_modules/jquery/dist/jquery.js"></script>
+  <script type="text/javascript" src="/node_modules/owl.carousel/dist/owl.carousel.min.js"></script> {% endcomment %}
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+  <script src="{% static 'js/owl.carousel.min.js' %}" relative="text/javascript"></script>
+  
+  {% comment %} <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script> {% endcomment %}
+ <!-- botstrap 4 -->
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+
+ <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<!-- Optional JavaScript; choose one of the two! -->
+ <script src="static/js/my.js"></script>
+
+ <!-- Option 2: Separate Popper and Bootstrap JS -->
+ 
+ <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+ <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+{% block customjs %}
+
+{% endblock customjs %}
+</body>
+
+
+</html>

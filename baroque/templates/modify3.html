@@ -1,0 +1,260 @@
+{% extends 'base.html' %} {% block title %}BAROQUE{% endblock title %}
+{% load static %}
+{% block customcss %}
+<link rel="stylesheet" href=" {% static 'css/barque31.css' %}" />
+<link rel="stylesheet" href="{% static 'css/zoom.css' %}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
+{% endblock customcss %}
+{% load cart %}
+{% block content %}
+
+<section class="container mx-auto my-4">
+    <div class="row">
+        <div class="pl-5 col-12 ml-0">
+            <span>
+                Home <i class="fa fa-angle-right" aria-hidden="true"></i> khaddar</span>
+            <hr />
+        </div>
+    </div>
+</section>
+<section class="container img-thumbnail">
+    <div class="container my-4">
+        <div class="row no-gutters border border-danger">
+            <div class="col-12 col-md-12 col-lg-7">
+
+                <div class=" row border border-info d-md-flex col-12">
+                    <!-- <div class="border border-info "><h1 class="text-center">main img</h1></div> -->
+                     <div class="col-12 col-md-8  zoomArea"
+                        style="width: 400px; height:400px;">
+                        <img src="{{ prod.product_img.url }}"  id="NZoomImg" data-NZoomscale="3.0"
+                            class="img-thumbnail  " alt="Responsive image" />
+
+                    </div>
+
+                    <div class="border border-success col-12 col-md-4">
+                        <!-- <h1 class="text-center"> div imd slide</h1> -->
+                       
+                       <div class="  mx-auto  d-flex flex-row flex-sm-column justify-content-between border border-primary">
+                        {% for prod in pros %}
+                        <img src="{{ prod.images.url }}" id="{{ prod.id }}"
+                            class=" img-thumbnail justify-content-around" alt="Responsive image" style="width:100px"
+                            onclick="document.getElementById('NZoomImg').src='{{prod.images.url}}'" />
+                        {% endfor %}
+                    </div> 
+
+                    </div>
+                </div>
+                <div class="col-8 pt-md-2 pb-sm-4 d-flex justify-content-around align-center-center">
+                    <!-- <strong class="text-capitalize text-muted">user Rating & reviews :</strong>
+                    <strong class=" pt">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fal fa-star"></i>
+                        <i class="fal fa-star"></i>
+                    </strong> -->
+                </div>
+
+            </div>
+
+
+            <div class="col-12 col-md-12 col-lg-5  img-thumbnail border border-dark ">
+                <h1 class="text-center">  bill row</h1>
+               
+
+                <!-- <div class="">
+
+                    <div class="">
+                        <h4 class="text-uppercase">{{ prod.product_name }}</h4>
+                    </div>
+                    <div class="d-flex my-2 py-2 justify-content-between">
+                        <h5 class="fw-light">Rs: </h5><span class="">{{prod.product_price}}</span>
+                    </div>
+                    <hr style="height:3px text-black " />
+
+
+                    <div class=" d-flex justify-content-between py-2">
+                        <strong class="float-left">Availability</strong><span
+                            class="float-right text-right">{{prod.availability}}</span>
+                    </div>
+
+                    <hr style="height:3px text-black " />
+
+                    <div class=" d-flex justify-content-between  py-2">
+                        <strong class="float-left">Quantity</strong><span class="float-right text-right">1</span>
+                    </div>
+                    <hr style="height:3px text-black " />
+
+                    <div class="d-flex justify-content-between  py-2">
+                        <strong class="float-left">Size</strong><span class="float-right text-right">
+                            {{prod.product_size}}</span>
+                    </div>
+                    <hr style="height:3px text-black " />
+
+                    {% comment %} <div class=" my-2"> {% endcomment %}
+
+                        <form method="POST" action="{% url 'cart' %}">
+                            {% csrf_token %}
+                            <input type="text" hidden name="product" value="{{ prod.pk }}" />
+                            <input type="submit" value="Add To Cart" class=" btn btn-dark form-control" />
+                        </form>
+
+                        {% comment %} {{ prod | is_in_cart:request.session.cart }} {% endcomment %}
+                        {% comment %} <a href=" ">add cart</a> {% endcomment %}
+                        <a href="" class="btn btn-dark form-control mt-2">Add to Wishlist</a>
+
+                        {% comment %}
+                    </div> {% endcomment %}
+
+                    <div class="mt-4 desc  py-2">
+                        <div id="accordion" role="tablist">
+                            <div class="">
+                                <div class="" role="tab" id="headingOne">
+                                    <h6 class="mb-0">
+                                        <a data-toggle="collapse" href="#collapseOne" aria-expanded="false"
+                                            aria-controls="collapseOne"
+                                            class="collapsed d-flex justify-content-between">
+                                            <span class="a text-uppercase font-weight-bolder text-body">
+                                                Description</span>
+                                            <span class="text-body font-weight-bold">
+                                                <i class="fa fa-angle-down" aria-hidden="true"></i></span>
+                                        </a>
+                                    </h6>
+                                </div>
+                                <div id="collapseOne" class="collapse" role="tabpanel" aria-labelledby="headingOne">
+                                    <div class="card-body">{{ prod.product_description }}</div>
+                                </div>
+                            </div>
+                        </div>
+                        <hr style="height:34px text-black " />
+
+                        <div id="accordion" role="tablist">
+                            <div class="my-2  py-2">
+                                <div class="" role="tab" id="headingTow">
+                                    <h6 class="mb-0">
+                                        <a data-toggle="collapse" href="#collapseTow" aria-expanded="false"
+                                            aria-controls="collapseTow"
+                                            class="collapsed d-flex justify-content-between">
+                                            <span class="a text-body text-uppercase font-weight-bolder">
+                                                Instruction</span>
+                                            <span class="text-body">
+                                                <i class="fa fa-angle-down" aria-hidden="true"></i></span>
+                                        </a>
+                                    </h6>
+                                </div>
+                                <div id="collapseTow" class="collapse" role="tabpanel" aria-labelledby="headingTow">
+                                    <div class="card-body">
+                                        Anim pariatur cliche reprehenderit, enim eiusmod high life
+                                        accusamus terry richardson ad squid.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <hr />
+
+                        <div id="accordion" role="tablist">
+                            <div class=" my-2  py-2">
+                                <div class="" role="tab" id="headingThree">
+                                    <h6 class="mb-0">
+                                        <a data-toggle="collapse" href="#collapseThree" aria-expanded="false"
+                                            aria-controls="collapseThree"
+                                            class="collapsed d-flex justify-content-between">
+                                            <span class="atext-uppercase font-weight-bolder text-body"> Delivery</span>
+                                            <span class="text-body">
+                                                <i class="fa fa-angle-down" aria-hidden="true"></i></span>
+                                        </a>
+                                    </h6>
+                                </div>
+                                <div id="collapseThree" class="collapse" role="tabpanel" aria-labelledby="headingThree">
+                                    <div class="card-body">
+                                        Anim pariatur cliche reprehenderit, enim eiusmod high life
+                                        accusamus terry richardson ad squid.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <hr />
+
+                        <div id="accordion" role="tablist">
+                            <div class="my-2  py-2">
+                                <div class="" role="tab" id="headingFour">
+                                    <h6 class="mb-0">
+                                        <a data-toggle="collapse" href="#collapseFour" aria-expanded="false"
+                                            aria-controls="collapseFour"
+                                            class="collapsed d-flex justify-content-between">
+                                            <span class="a text-body text-uppercase font-weight-bolder"> Exchange</span>
+                                            <span class="text-body">
+                                                <i class="fa fa-angle-down" aria-hidden="true"></i></span>
+                                        </a>
+                                    </h6>
+                                </div>
+                                <div id="collapseFour" class="collapse" role="tabpanel" aria-labelledby="headingFour">
+                                    <div class="card-body">
+                                        Anim pariatur cliche reprehenderit, enim eiusmod high life
+                                        accusamus terry richardson ad squid.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div> -->
+            </div>
+        </div>
+
+</section>
+<div class="container text-center mx-auto mt-4">
+    <strong class="text-center text-uppercase font-size-medium"> You may also like</strong>
+    <hr style="width:40px; height: 5px;" class="mx-auto">
+
+    <div class="row col-12 pt-4 ">
+        {% for x in may|slice:":3" %}
+        {% comment %} {% if x >= 3 %} {% endcomment %}
+        <div class="pt-3 mx-auto col-12 col-sm-4 col-sm-pt-4   rounded">
+            <a href=" {% url 'product_details' x.pk x.category_id %}"
+                class=" text-dark text-uppercase text-decoration-none">
+                <img src="{{x.product_img.url}}" alt="image not found" class="img-fluid shadow-sm rounded" />
+                <div class="description  pt-4">
+                    <span class="type  font-weight-bold">{{x.product_name}}</span><br>
+                    <span class="shop-now">shop now</span>
+                </div>
+            </a>
+        </div>
+
+
+        {% comment %} {% endif %} {% endcomment %}
+        {% endfor %}
+    </div>
+
+</div>
+<!-- <script src="{% static 'js/zoom.js' %} "></script> -->
+{% endblock content %}
+
+{% block customjs %}
+<script type="text/javascript" src="{% static 'js/Nzoom.min.js' %} "></script>
+<script type="text/javascript" src=" {% static 'js/my.js' %} "></script>
+<script>
+    $('.owl-carousel').owlCarousel({
+        loop: true,
+        margin: 10,
+        nav: false,
+        pagination: false,
+        responsive: {
+            0: {
+                items: 1
+            },
+            400: {
+                items: 2
+            },
+            600: {
+                items: 4
+            },
+            1000: {
+                items: 4
+            }
+        }
+    })
+
+
+
+</script>
+{% endblock customjs %}

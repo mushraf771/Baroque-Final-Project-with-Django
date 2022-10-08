@@ -1,0 +1,38 @@
+/* 
+.bt-size{
+    display: flex;
+    justify-content: center;
+}
+.btn-size{
+    border: none;
+    border-radius: 20px !important;
+}
+.hr-line{
+    width: 50px;
+    height: 20px;
+    font-weight: bold;
+    
+}
+.img12{
+    width: 100px;
+    height: 200px;
+}
+.flex1{
+    display: flex;
+    
+}
+.section1{
+    height: 600px;
+    overflow: hidden;
+    border: 1px solid red !important;
+}
+
+.imged{
+    display: flex;
+    justify-content: space-evenly;
+    align-content: center;
+}
+.var-img{
+    height: 50px;
+    height: 100px;
+} */

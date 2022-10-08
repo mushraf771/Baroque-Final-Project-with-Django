@@ -1,0 +1,12 @@
+
+.zoomArea {
+  width: 45opx;
+  height: 450px;
+  overflow: hidden;
+  /* border:1px solid */
+}
+
+.zoomArea > img {
+  width: 440px;
+  height: 440px;
+}

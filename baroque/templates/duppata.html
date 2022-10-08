@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+   {% block title %}BAROQUE{% endblock title %}
+    {% load static %}
+    {% block basecss %}
+  <link rel="stylesheet" href="{% static 'broque.css' %}">
+  {% endblock basecss %}
+
+
+{% block content %}
+
+<section class="container mx-auto">
+  <div class="row col-12 pt-4 ">
+    {% for x in images %}
+    
+    <div class="pt-3 mx-auto col-12 col-sm-4 col-sm-pt-4   rounded">
+      <a href=" {% url 'product_details' x.pk x.category_id %}"class="type  text-decoration-none">
+      <img src="{{x.product_img.url}}" alt="image not found" class="img-fluid shadow-sm rounded"/>
+      <div class="description  pt-4">
+        <span class="type text-black text-uppercase ">{{x.product_name}}</span><br>
+        <span class="shop-now ">shop now</span>
+      </div>
+    </a>
+    </div>
+    {% endfor %}
+  </div>
+</section>
+{% endblock content %}
